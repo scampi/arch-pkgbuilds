@@ -1,14 +1,14 @@
 pkgname=debian-byzanz
-pkgver=r98.7c4d8b3
+pkgver=r110.1f9e1b5
 pkgrel=1
-pkgdesc="Record what's happening on your desktop"
+pkgdesc="Record what is happening on your desktop"
 arch=('i686' 'x86_64')
-url="http://git.gnome.org/browse/byzanz/"
+url="https://salsa.debian.org/debian/byzanz"
 license=('GPL')
 depends=('gtk3' 'gst-plugins-base' 'gst-plugins-good')
 makedepends=('git')
 install=$pkgname.install
-source=($pkgname::git://anonscm.debian.org/collab-maint/byzanz.git#commit=7c4d8b37c9b3f0c1ee351e3a5c45f78ae274fad5)
+source=($pkgname::git+https://salsa.debian.org/debian/byzanz.git#tag=debian/0.3.0+git20160312-2)
 md5sums=('SKIP')
 
 pkgver() {
@@ -22,6 +22,7 @@ prepare() {
   patch -Np1 -i debian/patches/Fix-FTBFS-because-of-Wcast-align-error-flag.patch
   patch -Np1 -i debian/patches/audio.patch
   patch -Np1 -i debian/patches/no-Werror.patch
+  patch -Np1 -i debian/patches/remove-deprecated-gnome-common-macros.patch
 }
 
 build() {
