@@ -1,0 +1,42 @@
+pkgname=yfful-intellij-idea-community-edition
+pkgver=2018.1
+_buildver=181.4203.550
+pkgrel=1
+pkgdesc="An intelligent IDE for Java, Groovy and other programming languages with advanced refactoring features intensely focused on developer productivity."
+arch=('any')
+url="http://www.jetbrains.com/idea/"
+backup=("usr/share/${pkgname}/bin/idea.vmoptions" "usr/share/${pkgname}/bin/idea64.vmoptions" "usr/share/${pkgname}/bin/idea.properties")
+depends=('java-environment' 'giflib' 'libxtst')
+replaces=('intellij-idea-libs')
+options=(!strip)
+source=(https://download.jetbrains.com/idea/ideaIC-$pkgver.tar.gz \
+        intellijidea.sh \
+        jetbrains-idea.desktop
+)
+sha256sums=('d8db6815815211cea44d031e981e7d3eb6739005bdf4a6ec5a8b3df785f3b421'
+            '12954d01af00915463d98b693e148ccf2b69533201a2ea60cc424234e7c48e49'
+            '01b90e7de9751c7fa7bc352023325be69c54fb4ed342173eeccaef59ad5e6f70'
+)
+package() {
+  cd "$srcdir"
+
+  install -d -m755 "$pkgdir"/usr/{bin,share}
+  cp -a "idea-IC-$_buildver" "$pkgdir/usr/share/$pkgname"
+  chown -R root:root $pkgdir/usr/share
+
+  find "$pkgdir"/usr/share/$pkgname -type d -exec chmod 0755 {} ';'
+  find "$pkgdir"/usr/share/$pkgname -type f -exec chmod 0644 {} ';'
+
+  chmod +x "$pkgdir"/usr/share/$pkgname/bin/idea.sh
+  chmod +x "$pkgdir"/usr/share/$pkgname/bin/fsnotifier
+  chmod +x "$pkgdir"/usr/share/$pkgname/bin/fsnotifier64
+
+  install -D -m755 $srcdir/intellijidea.sh $pkgdir/usr/bin/$pkgname
+  install -D -m644 $srcdir/jetbrains-idea.desktop $pkgdir/usr/share/applications/jetbrains-idea.desktop
+  install -D -m644 $srcdir/idea-IC-$_buildver/bin/idea.png $pkgdir/usr/share/pixmaps/$pkgname.png
+
+  # workaround FS#40934
+  sed -i 's|lcd|on|'  "$pkgdir"/usr/share/$pkgname/bin/*.vmoptions
+}
+
+# vim:set ts=2 sw=2 et:

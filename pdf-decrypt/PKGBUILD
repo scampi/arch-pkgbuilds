@@ -1,0 +1,28 @@
+pkgname=pdf-decrypt-git
+_gitname=pdf-decrypt
+pkgver=13.9538a84
+pkgrel=1
+pkgdesc="Remove password-protection from PDFs permanently."
+arch=('any')
+url="https://github.com/zvyn/pdf-decrypt"
+license=('MIT')
+depends=('qpdf')
+makedepends=('git')
+source=('git://github.com/zvyn/pdf-decrypt.git')
+md5sums=('SKIP')
+
+pkgver() {
+  cd $_gitname
+  ## Use the tag of the last commit
+  # git describe --always | sed 's|-|.|g'
+  echo $(git rev-list --count HEAD).$(git rev-parse --short HEAD)
+}
+
+package() {
+  install -Dm755 "$srcdir/$_gitname/$_gitname.bash" "$pkgdir/usr/bin/$_gitname"
+  install -Dm755 "$srcdir/$_gitname/$_gitname.png"\
+      "$pkgdir/usr/share/pixmaps/$_gitname.png"
+  install -Dm755 "$srcdir/$_gitname/$_gitname.desktop"\
+      "$pkgdir/usr/share/applications/$_gitname.desktop"
+
+}

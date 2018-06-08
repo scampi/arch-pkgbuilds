@@ -1,0 +1,32 @@
+_name=avn
+pkgname=yfful-avn
+pkgver=0.2.3.r7.g24e1b1d
+pkgrel=1
+pkgdesc='Automatic Version Switching for Node.js'
+arch=('i686' 'x86_64')
+url='https://github.com/wbyoung/avn'
+license=('MIT')
+source=("git+https://github.com/wbyoung/avn.git#branch=master"
+        "git+https://github.com/wbyoung/avn-nvm.git#branch=master")
+sha256sums=('SKIP' 'SKIP')
+provides=("avn=${pkgver}")
+makedepends=('npm')
+install=${pkgname}.install
+
+pkgver() {
+  cd "${_name}"
+  git describe --long | sed 's/^v//;s/\([^-]*-g\)/r\1/;s/-/./g'
+}
+
+build() {
+  cd "$srcdir/${_name}"
+  npm install
+  cd "$srcdir/${_name}-nvm"
+  npm install
+}
+
+package() {
+  install -Dm700 -t "${pkgdir}/usr/bin" avn/bin/_avn avn/bin/avn.sh
+}
+
+# vim:set sw=2 sts=2 et:

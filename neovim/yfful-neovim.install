@@ -1,0 +1,4 @@
+post_install() {
+  echo "Installing python3 neovim"
+  pip3 install neovim
+}
