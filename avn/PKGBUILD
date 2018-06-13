@@ -1,6 +1,6 @@
 _name=avn
 pkgname=yfful-avn
-pkgver=0.2.3.r7.g24e1b1d
+pkgver=0.2.3.r12.g498ee49
 pkgrel=1
 pkgdesc='Automatic Version Switching for Node.js'
 arch=('i686' 'x86_64')

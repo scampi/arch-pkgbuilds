@@ -1,5 +1,5 @@
 pkgname=yfful-neovim
-pkgver=0.2.2.r1250.ge121b1dbe
+pkgver=0.2.2.r1398.g77192889f
 pkgrel=1
 pkgdesc='Fork of Vim aiming to improve user experience, plugins, and GUIs.'
 arch=('i686' 'x86_64')

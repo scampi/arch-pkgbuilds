@@ -1,12 +1,12 @@
 pkgname=yfful-nextcloud-client-git
 _name=nextcloud-client
-pkgver=268.b095916
+pkgver=270.3a48c7c
 pkgrel=1
 pkgdesc="Nextloud client for linux"
 arch=('i686' 'x86_64')
 url="https://nextcloud.com/"
 license=('GPL2')
-depends=('qtkeychain' 'qt5-webkit' 'hicolor-icon-theme' 'xdg-utils')
+depends=('qtkeychain' 'qt5-base' 'qt5-webkit' 'qt5-tools' 'hicolor-icon-theme' 'xdg-utils')
 optdepends=(
   'python2-nautilus: integration with Nautilus'
   'nemo-python: integration with Nemo'
