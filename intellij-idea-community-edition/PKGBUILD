@@ -1,6 +1,6 @@
 pkgname=yfful-intellij-idea-community-edition
-pkgver=2018.1.4
-_buildver=181.5087.20
+pkgver=2018.1.5
+_buildver=181.5281.24
 pkgrel=1
 pkgdesc="An intelligent IDE for Java, Groovy and other programming languages with advanced refactoring features intensely focused on developer productivity."
 arch=('any')
@@ -13,7 +13,7 @@ source=(https://download.jetbrains.com/idea/ideaIC-$pkgver.tar.gz \
         intellijidea.sh \
         jetbrains-idea.desktop
 )
-sha256sums=('26e674de05976cc7e822d77a2dfe8b8f6136e18f1e91f1c8212019f2781164e1'
+sha256sums=('85f17fc6f9827da76dd7f4fb595a84c918936907d82e3a76ab2517c8e1930a2e'
             '12954d01af00915463d98b693e148ccf2b69533201a2ea60cc424234e7c48e49'
             '01b90e7de9751c7fa7bc352023325be69c54fb4ed342173eeccaef59ad5e6f70'
 )
