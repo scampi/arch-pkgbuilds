@@ -1,20 +1,20 @@
 _gemname=asciidoctor
 pkgname=yfful-$_gemname
-pkgver=1.5.5
+pkgver=2.0.10
 pkgrel=1
 pkgdesc='An implementation of the AsciiDoc text processor and publishing toolchain in Ruby'
 arch=(any)
 url='http://asciidoctor.org'
 license=(MIT)
-depends=("ruby-rdoc")
+depends=("ruby-rdoc" "yfful-asciidoctor-diagram")
 options=(!emptydirs)
 source=(https://rubygems.org/downloads/$_gemname-$pkgver.gem)
 noextract=($_gemname-$pkgver.gem)
-sha256sums=('87effa3de95919df880aab04c6c29c89255ce671abce361da476208734a5424e')
+sha256sums=('7f3df92816f75344d36bb15e49a6fbc07ac0999a1cd2938fd0802ea587964aac')
 
 package() {
   local _gemdir="$(ruby -e'puts Gem.default_dir')"
   gem install --ignore-dependencies --no-user-install -i "$pkgdir/$_gemdir" -n "$pkgdir/usr/bin" $_gemname-$pkgver.gem
   rm "$pkgdir/$_gemdir/cache/$_gemname-$pkgver.gem"
-  install -D -m644 "$pkgdir/$_gemdir/gems/$_gemname-$pkgver/LICENSE.adoc" "$pkgdir/usr/share/licenses/$pkgname/LICENSE.adoc"
+  install -D -m644 "$pkgdir/$_gemdir/gems/$_gemname-$pkgver/LICENSE" "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
 }
